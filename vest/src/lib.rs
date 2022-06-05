@@ -70,14 +70,14 @@ impl Contract {
     }
     #[payable]
     pub fn get_rewards(&mut self, receiver:AccountId) {
-        let all_tokens = self.get_all_tokens();        
+        //let all_tokens = self.get_all_tokens();        
         let get = self.accounts.get(&receiver);
         let (first_invest_time, amount) = match get  {
             Some(get) => (get.time/NANOSECONDS, get.amount),
             None => panic!("You doesn't have a funds!")
         };
         let now:i32 = env::block_timestamp().try_into().unwrap();
-        let balance_on_contract = env::account_balance();
+        //let balance_on_contract = env::account_balance();
         // we have a time when make funds and how much time pass after that
         let duration = now - first_invest_time;
         let percent_for_rewards = 10;
